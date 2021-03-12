@@ -1773,9 +1773,9 @@ static void fg_dump_registers(struct bq_fg_chip *bq)
 		msleep(5);
 		ret = fg_read_word(bq, fg_dump_regs[i], &val);
 		if (!ret)
-			printk("Reg[%02X] = 0x%04X ", fg_dump_regs[i], val);
+			pr_debug("Reg[%02X] = 0x%04X ", fg_dump_regs[i], val);
 	}
-	pr_info("bq27426 fg_dump_registers\n");
+	pr_debug("bq27426 fg_dump_registers\n");
 }
 
 static irqreturn_t fg_irq_thread(int irq, void *dev_id)
@@ -1804,7 +1804,7 @@ static irqreturn_t fg_irq_thread(int irq, void *dev_id)
 
 
 
-	pr_info("itpor=%d, cfg_mode = %d, seal_state=%d, batt_present=%d\n",
+	pr_debug("itpor=%d, cfg_mode = %d, seal_state=%d, batt_present=%d\n",
 			bq->itpor, bq->cfg_update_mode, bq->seal_state, bq->batt_present);
 
 	if (!last_batt_present && bq->batt_present ) {
@@ -1830,7 +1830,7 @@ static irqreturn_t fg_irq_thread(int irq, void *dev_id)
 		bq->batt_rm = fg_read_rm(bq);
 
 		mutex_unlock(&bq->update_lock);
-		pr_err("RSOC:%d, Volt:%d, Current:%d, Temperature:%d, connected_rid = %d\n",
+		pr_debug("RSOC:%d, Volt:%d, Current:%d, Temperature:%d, connected_rid = %d\n",
 			bq->batt_soc, bq->batt_volt, bq->batt_curr, bq->batt_temp - 2730, bq->connected_rid);
 	}
 
