@@ -1052,7 +1052,7 @@ static int bq2560x_system_temp_level_set(struct bq2560x *bq,
 	int ret = 0;
 	int prev_therm_lvl;
 
-	pr_err("%s lvl_sel=%d, bq->therm_lvl_sel = %d\n", __func__, lvl_sel, bq->therm_lvl_sel);
+	pr_debug("%s lvl_sel=%d, bq->therm_lvl_sel = %d\n", __func__, lvl_sel, bq->therm_lvl_sel);
 	if (BatteryTestStatus_enable)
 		return 0;
 
